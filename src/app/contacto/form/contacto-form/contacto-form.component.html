@@ -1,2 +1,16 @@
-<p>contacto-form works!</p>
-<button type="button" (click)="guardarContacto()">Guardar</button>
+
+<form  [formGroup]="contactoForm" (ngSubmit)="guardarContacto()" >
+  <div>
+    <label for="nombre">Nombre: </label>
+    <input type="text" name="nombre" id="nombre" formControlName="nombre">
+  </div>
+  <div>
+    <label for="apellido">Apellido: </label>
+    <input type="text" name="apellido" id="apellido" formControlName="apellido">
+  </div>
+  <div>
+      <label for="email">Email: </label>
+      <input type="email" name="email" id="email" formControlName="email">
+    </div>
+  <button type="submit">Guardar</button>
+</form>

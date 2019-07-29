@@ -1,6 +1,7 @@
 import { Contacto } from './../../contacto.model';
 import { ContactoService } from './../../contacto.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-contacto-form',
@@ -9,18 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactoFormComponent implements OnInit {
 
-  constructor(private contactoService: ContactoService) { }
+  contactoForm = this.fb.group({
+    nombre: [''],
+    apellido: [''],
+    email: ['']
+  });
+
+  constructor(private contactoService: ContactoService, private fb: FormBuilder) { }
 
   ngOnInit() {
   }
 
   guardarContacto() {
-    const contacto = new Contacto();
-    contacto.apellido = 'Cosme';
-    contacto.nombre = 'Fulanito';
-    contacto.email = 'prueba@email.com';
-    this.contactoService.crear(contacto).subscribe(console.log);
-
+    this.contactoService.crear(this.contactoForm.value).subscribe(console.log);
   }
 
 }
